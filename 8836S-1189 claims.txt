@@ -1,0 +1,83 @@
+1.	A delay locked loop comprising:
+a delay line configured to delay an input clock signal in units of unit delay in response to a delay control code to generate an output clock signal; 
+a delay circuit configured to delay the output clock signal to generate a delay clock signal;  
+a phase detector configured to compare the input clock signal and the delay clock signal to generate a phase detection signal; 
+a delay code generator configured to compare the input clock signal and the delay clock signal to detect a phase difference therebetween and generate a delay code using the phase difference; and 
+a delay controller configured to generate the delay control code using the delay code and the phase detection signal.  
+
+2.	The delay locked loop of claim 1, wherein the delay code generator maintains the delay code, generated using a first cycle of the input clock signal, during a locking process of the delay locked loop.  
+
+3. 	The delay locked loop of claim 1, wherein the delay code generator comprises:
+an error pulse generator configured to compare the input clock signal and the delay clock signal to detect a phase difference, and generate an error pulse having a pulse width which is proportional to the phase difference; 
+a delay measuring circuit configured to generate measuring pulses, whose number is proportional to the pulse width, using the error pulse; and 
+a code generator configured to generate the delay code using each of the generated measuring pulses.
+
+4. 	The delay locked loop of claim 3, wherein the error pulse generator comprises:
+a first flip-flop configured to receive data at logic high, discriminate the data using an edge of the input clock signal to generate a first discriminating signal, and be reset by a pulse reset signal; 
+a second flip-flop configured to receive the data, discriminate the data based on an edge of the delay clock signal to generate a second discriminating signal, and be reset by the pulse reset signal; 
+a logical AND circuit configured to perform an AND operation on the first and the second discriminating signals to generate the pulse reset signal; and 
+a logical OR circuit configured to perform an OR operation on the first and the second discriminating signals to generate the error pulse.
+
+5.	The delay locked loop of claim 3, wherein a time corresponding to the pulse width comprises n number of unit delays and the delay measuring circuit generates measuring pulses whose number is proportional to n.   
+
+6.	The delay locked loop of claim 3, wherein the delay measuring circuit comprises a modeled circuit of the delay line.
+
+7.	The delay locked loop of claim 6, wherein the modeled circuit comprises delay stages whose number is less than the number of the delay stages of the delay line.  
+ 
+8.	The delay locked loop of claim 3, wherein the code generator comprises a latch for each of the measuring pulses, and each of the latches is configured to receive one of the measuring pulses to generate the delay code.  
+
+9.	The delay locked loop of claim 1, wherein the delay controller generates an initial delay control code using the delay code and shifts the initial delay control code in response to the phase detection signal to generate the delay control code.  
+
+10.	The delay locked loop of claim 1, wherein the delay code and the delay control code are initialized by a reset signal.  
+
+11.	A delay locked loop comprising:
+a delay line configured to delay an input clock signal to generate an output clock signal in response to a delay control code; 
+a delay circuit configured to delay the output clock signal to generate a delay clock signal;
+a phase detector configured to compare the input clock signal and the delay clock signal to detect a phase difference therebetween, and generate a phase detection signal and an error pulse, having a pulse width which is proportional to the phase difference, using the phase difference; 
+a delay code generator configured to generate a delay code using the error pulse; and 
+a delay controller configured to generate the delay control code using the delay code and the phase detection signal.  
+
+12.     The delay locked loop of claim 11, wherein the phase detection signal includes a code rising signal and a code falling signal.  
+
+13.    The delay locked loop of claim 12, wherein the phase detector comprises:
+a first flip-flop configured to receive data at logic high, discriminate the data using an edge of the input clock signal to generate a first discriminating signal, and be reset by a pulse reset signal; 
+a second flip-flop configured to receive the data, discriminate the data based on an edge of the delay clock signal to generate a second discriminating signal, and be reset by the pulse reset signal; 
+a logical AND circuit configured to perform an AND operation on the first and the second discriminating signals to generate the pulse reset signal; and 
+a pulse generating circuit configured to perform an OR operation on the first and the second discriminating signals to generate the error pulse,
+wherein the first discriminating signal corresponds to the code falling signal and the second discriminating signal corresponds to the code rising signal.  
+
+14.    The delay locked loop of claim 11, wherein the delay code generator comprises:
+a delay measuring circuit configured to generate measuring pulses, whose number is proportional to the pulse width, using the error pulse; and 
+a code generator configured to generate the delay code using each of the generated measuring pulses.
+
+15.    The delay locked loop of claim 11, wherein the delay code and the delay control code are initialized by a reset signal.  
+
+16.	A method of performing a coarse lock process using a delay locked loop, the method comprising:
+receiving, at a phase detector, an input clock signal and a delay clock signal, wherein the delay clock signal is an output clock signal of the delay locked loop that is delayed for a predetermined amount of time;
+determining, by the phase detector, a phase difference between the input clock signal and the delay clock signal to generate a phase detection signal;
+receiving, at a delay code generator, the input clock signal and the delay clock signal;
+generating, by the delay code generator, a delay code using the input clock signal and the delay clock signal;
+receiving, at a delay controller, the phase detection signal and the delay code; 
+	generating, by the delay controller, a delay control code using the phase detection code and the delay code; and
+	receiving, at a delay line, the input clock signal and the delay control code to generate the output clock signal.
+
+	
+
+	17.	The method of claim 16, wherein
+	in a first cycle of the input clock signal, the delay code generator generates an initial delay code, and
+	after the first cycle, the initial delay code is maintained.
+
+	18.	The method of claim 16, wherein 
+the delay locked loop performs a first loop and a second loop,
+	the first loop includes receiving the phase detection signal and the delay code at the delay controller and generating the delay control code, and
+	the second loop includes receiving the input clock signal and the delay clock signal at the delay code generator and generating the delay code.
+
+	19.	The method of claim 16, further comprising:
+	comparing, by the phase detector, the input clock signal with the delay clock signal to determine that the delay locked loop is coarse-locked; and
+	completing the coarse lock process by generating a coarse lock signal.
+
+	20.	The method of claim 16, further comprising:
+	comparing, by the phase detector, the input clock signal with the delay clock signal to determine that the delay locked loop is not coarse-locked;
+	generating the phase detection signal using the input clock signal and the delay clock signal, wherein the phase detection signal is either a code rising signal or a code falling signal; and
+	updating the delay control code using the phase detection signal.
+ 

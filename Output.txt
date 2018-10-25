@@ -1,0 +1,406 @@
+UNITED STATES DEPARTMENT OF COMMERCE
+United States Patent and Trademark Office
+Address: COMMISSIONER FOR PATENTS
+
+P.O. Box 1450
+
+Alexandria, Virginia 22313-1450
+
+www.uspto.gov
+
+ 
+
+15/922,332 03/15/2018 JUN-HA LEE 80548-1225 (CY5019US) 6914
+F. CHAU & ASSOCIATES, LLC
+130 WOODBURY ROAD KIM, SEOKIIN
+
+WOODBURY, NY 11797
+
+ART UNIT PAPER NUMBER
+
+2844
+
+NOTIFICATION DATE DELIVERY MODE
+
+09/17/2018 ELECTRONIC
+
+Please find below and/or attached an Office communication concerning this application or proceeding.
+The time period for reply, if any, is set in the attached communication.
+
+Notice of the Office communication was sent electronically on above-indicated "Notification Date" to the
+following e-mail address(es):
+
+garramone @chauiplaw.com
+mail@chauiplaw.com
+
+PTOL-90A (Rev. 04/07)Application No. Applicant(s)
+15/922 332 LEE etal.
+
+Office Action Summary Examiner Art Unit AIA Status
+SEOKJIN KIM 2844 Yes
+
+-- The MAILING DATE of this communication appears on the cover sheet with the correspondence address --
+Period for Reply
+
+A SHORTENED STATUTORY PERIOD FOR REPLY IS SET TO EXPIRE 3 MONTHS FROM THE MAILING
+DATE OF THIS COMMUNICATION.
+
+Extensions of time may be available under the provisions of 37 CFR 1.136(a). In no event, however, may a reply be timely filed
+
+after SIX (6) MONTHS from the mailing date of this communication.
+- If NO period for reply is specified above, the maximum statutory period will apply and will expire SIX (6) MONTHS from the mailing date of this communication.
+- Failure to reply within the set or extended period for reply will, by statute, cause the application to become ABANDONED (35 U.S.C. § 133).
+
+Any reply received by the Office later than three months after the mailing date of this communication, even if timely filed, may reduce any
+
+earned patent term adjustment. See 37 CFR 1.704(b).
+
+Status
+1)(] Responsive to communication(s) filed on 15 March 2018.
+C) A declaration(s)/affidavit(s) under 37 CFR 1.130(b) was/were filed on
+2a) This action is FINAL. 2b) ) This action is non-final.
+
+3)() An election was made by the applicant in response to a restriction requirement set forth during the interview on
+; the restriction requirement and election have been incorporated into this action.
+
+4) Since this application is in condition for allowance except for formal matters, prosecution as to the merits is
+closed in accordance with the practice under Ex parte Quayle, 1935 C.D. 11, 453 O.G. 213.
+
+Disposition of Claims*
+)) Claim(s) 1-20 is/are pending in the application.
+5a) Of the above claim(s) _is/are withdrawn from consideration.
+CL] Claim(s)___is/are allowed.
+Claim(s) 1-2,13,15-18 and 20 is/are rejected.
+8 Claim(s) 3-12,14 and 19 is/are objected to.
+
+9) ( Claim(s) are subject to restriction and/or election requirement
+* If any claims have been determined allowable, you may be eligible to benefit from the Patent Prosecution Highway program at a
+participating intellectual property office for the corresponding application. For more information, please see
+http:/Awww.uspto.gov/patents/init_events/pph/index.jsp or send an inquiry to PPHfeedback@uspto.gov.
+
+6
+7
+
+)
+)
+)
+)
+
+Application Papers
+10)() The specification is objected to by the Examiner.
+11)(¥] The drawing(s) filed on 15 March 2018 is/are: a)[¥}] accepted or b)() objected to by the Examiner.
+Applicant may not request that any objection to the drawing(s) be held in abeyance. See 37 CFR 1.85(a).
+Replacement drawing sheet(s) including the correction is required if the drawing(s) is objected to. See 37 CFR 1.121 (d).
+
+Priority under 35 U.S.C. § 119
+12)@) Acknowledgment is made of a claim for foreign priority under 35 U.S.C. § 119(a)-(d) or (f).
+Certified copies:
+a)¥) All b)(J Some** cc) None of the:
+1.4} Certified copies of the priority documents have been received.
+2.1) Certified copies of the priority documents have been received in Application No. |
+3.1) Copies of the certified copies of the priority documents have been received in this National Stage
+application from the International Bureau (PCT Rule 17.2(a)).
+* See the attached detailed Office action for a list of the certified copies not received.
+
+Attachment(s)
+1) Notice of References Cited (PTO-892) 3) [] Interview Summary (PTO-413)
+
+Paper No(s)/Mail Date
+
+2) Information Disclosure Statement(s) (PTO/SB/08a and/or PTO/SB/08b) 4) (2) Other:
+
+Paper No(s)/Mail Date 03/15/2018.
+U.S. Patent and Trademark Office
+PTOL-326 (Rev. 11-13) Office Action Summary Part of Paper No./Mail Date 20180910Application/Control Number: 15/922,332 Page 2
+Art Unit: 2844
+
+1.
+
+DETAILED ACTION
+
+The present application, filed on or after March 16, 2013, is being examined under the first
+inventor to file provisions of the AIA.
+
+In the event the determination of the status of the application as subject to AIA 35 U.S.C. 102
+and 103 (or as subject to pre-AIA 35 U.S.C. 102 and 103) is incorrect, any correction of the
+statutory basis for the rejection will not be considered a new ground of rejection if the prior
+art relied upon, and the rationale supporting the rejection, would be the same under either
+
+status.
+
+Information Disclosure Statement
+
+The information disclosure statement (IDS) submitted on 03/15/2018 is in compliance with
+the provisions of 37 CFR 1.97. Accordingly, the information disclosure statement is being
+
+considered by the examiner.
+
+Claim Rejections - 35 USC § 102
+
+The following is a quotation of the appropriate paragraphs of 35 U.S.C. 102 that form the
+
+basis for the rejections under this section made in this Office action:
+
+A person shall be entitled to a patent unless —
+
+(a) (1) the claimed invention was patented, described in a printed
+publication, or in public use, on sale or otherwise available to the
+public before the effective filing date of the claimed invention.
+
+(a) (2) the claimed invention was described in a patent issued under
+section 151, or in an application for patent published or deemed
+published under section 122(b), in which the patent or application,
+as the case may be, names another inventor and was effectively filed
+before the effective filing date of the claimed invention.Application/Control Number: 15/922,332 Page 3
+Art Unit: 2844
+
+5. Claims 1, 2, 13, 15-18 and 20 are rejected under 35 U.S.C. 102(a)(1) as being anticipated by
+
+Tatapudi (PG Pub. US 2017/0109249 A1).
+
+Regarding claim 1, Tatapudi teaches a memory module comprising:
+
+an external resistor (Fig. 7, 720, [0045] ZQ resistor 720) formed in a module board (Fig. 7,
+
+[0045] a package 708 which includes memory devices 704 and the ZQ resistor 720); and
+
+a plurality of memory devices including a first memory device and a second memory device,
+and commonly connected to the external resistor (Fig. 7, memory devices 704 commonly
+
+connected to the ZQ resistor 720),
+
+wherein each of the plurality of memory devices comprises:
+
+a first reception pad associated with receiving an impedance calibration command (Fig. 3, TI
+pad 316; [0031] token input line 316); and a first transmission pad associated with
+transmitting the impedance calibration command (Fig. 3, TO pad 320; [0031] token output
+
+line 320),
+
+wherein each of the plurality of memory devices is configured to transfer the impedance
+calibration command ({0029] possession of a token that activates its corresponding
+calibration circuit) to the first memory device (Fig. 2, 228, [0028] token ring bus 228),
+which is selected as a master ({0029] possession of a token), among the plurality of memory
+devices through a ring topology (Fig. 2, 228, [0028] token ring bus 228) constituted by the
+first reception pad and the first transmission pad (Fig. 3, [0031] token input line 316, token
+
+output line 320), andApplication/Control Number: 15/922,332 Page 4
+Art Unit: 2844
+
+wherein the first memory device is configured to perform an impedance calibration operation
+for the first memory device (Fig. 1, [0020], calibration command to an impedance controller
+190), to determine a resistance (Fig. 1, [0020] adjust impedance) and a target output high
+level (VOH) voltage of an output driver ({0021] control code to enable/disable pull up
+transistors), in response to the impedance calibration command (Fig. /, [0020] a calibration
+command to cause a memory device to calibrate an impedance of 188 and 176), and
+
+is configured to transfer the impedance calibration command to the second memory
+
+device adjacent to the first memory device through the first transmission pad of the first
+memory device after performing the impedance calibration operation for the first memory
+
+device (Fig. 2, 228, [0028] token ring bus 228).
+
+Regarding claim 2, all the limitations of claim 1 are taught by Tatapudi.
+
+Tatapudi further teaches a memory module, wherein the plurality of memory devices
+
+further includes a third memory device (Fig. 4, 4 memory devices),
+
+wherein the second memory device is configured to perform the impedance
+calibration operation for the second memory device in response to the impedance calibration
+command (Fig. 6, step 620, [0044]) and is configured to transfer the impedance calibration
+command to the third memory device adjacent to the second memory device through the first
+transmission pad of the second memory device after performing the impedance calibration
+operation for the second memory device (Fig. 6, step 628, [0044]), and wherein the third
+memory device is connected to the first transmission pad of the second memory device (Fig.
+
+3, TI, TO).Application/Control Number: 15/922,332 Page 5
+Art Unit: 2844
+
+Regarding claim 13, Tatapudi teaches a memory system comprising:
+
+a memory module including an external resistor (Fig. 7, 720, [0045] ZQ resistor 720) anda
+plurality of memory devices including a first memory device and a second memory device
+wherein the external resistor is formed in a module board (Fig. 7, [0045] a package 708
+which includes memory devices 704 and the ZQ resistor 720), and the plurality of memory
+devices are commonly connected to the external resistor (Fig. 7, memory devices 704
+
+commonly connected to the ZQ resistor 720); and
+
+a memory controller configured to control the memory module (Fig. /, [0017]
+
+memory controllers 140),
+
+wherein each of the plurality of memory devices comprises:
+
+a first reception pad associated with receiving an impedance calibration command (Fig. 3, TI
+pad 316; [0031] token input line 316); and a first transmission pad associated with
+transmitting the impedance calibration command (Fig. 3, TO pad 320; [0031] token output
+
+line 320),
+
+wherein each of the plurality of memory devices is configured to transfer the
+impedance calibration command (/0029] possession of a token that activates its
+corresponding calibration circuit) to the first memory device (Fig. 2, 228, [0028] token ring
+bus 228), which is selected as a master ({0029] possession of a token), among the plurality of
+memory devices through a ring topology (Fig. 2, 228, [0028] token ring bus 228) constituted
+by the first reception pad and the first transmission pad (Fig. 3, [0031] token input line 316,
+
+token output line 320), andApplication/Control Number: 15/922,332 Page 6
+Art Unit: 2844
+
+wherein the first memory device is configured to perform an impedance calibration operation
+for the first memory device (Fig. 1, [0020], calibration command to an impedance controller
+190), to determine a resistance (Fig. 1, [0020] adjust impedance) and a target output high
+level (VOH) voltage of an output driver ({0021] control code to enable/disable pull up
+transistors), in response to the impedance calibration command (Fig. /, [0020] a calibration
+command to cause a memory device to calibrate an impedance of 188 and 176), and
+
+is configured to transfer the impedance calibration command to the second memory
+
+device adjacent to the first memory device through the first transmission pad of the first
+memory device after performing the impedance calibration operation for the first memory
+
+device (Fig. 2, 228, [0028] token ring bus 228).
+
+Regarding claim 15, all the limitations of claim 13 are taught by Tatapudi.
+Tatapudi further teaches a memory system, wherein each of the plurality of memory
+devices is a low power double data rate 4 (LPDDR4) synchronous memory device ({00/4]
+
+Low Power Double Data Rate 4 (LPDDR4) memory).
+
+Regarding claim 16, this claim has substantially the same subject matter as that in
+
+claim 1. Therefore, claim 16 is rejected under the same rationale as claim | above.
+
+Regarding claim 17, all the limitations of claim 16 are taught by Tatapudi.
+
+Tatapudi further teaches a method, wherein performing the impedance calibration
+operation sequentially in each of the plurality of memory devices from the first memory
+device comprises: determining whether the first memory device matches with the second
+memory device (Fig. 4, [0038] latch 424 is enabled by XNOR gate 444 which checks if ACK
+
+from subsequent memory device, i.e. the second memory device and DONE from theApplication/Control Number: 15/922,332 Page 7
+Art Unit: 2844
+
+corresponding device, i.e. the first device matches to each other; when matches it enables the
+
+latch 424),
+
+Regarding claim 18, all the limitations of claim 17 are taught by Tatapudi.
+
+Tatapudi further teaches a method, wherein performing the impedance calibration
+operation sequentially in each of the plurality of memory devices from the first memory
+device further comprises: performing, in the first memory device, the impedance calibration
+operation for the first memory device (Fig. 4, [0036] the calibration circuit is enabled to
+proceed with the calibration when the latch 424 contains a token, “one” digital value), in
+response to the impedance calibration command, when the first memory device matches with
+
+the second memory device (Fig. 4, [0038] latch 424 is enabled by XNOR gate 444); and
+
+performing, in each of other memory devices which are not selected as the master, the
+impedance calibration operation sequentially by receiving the impedance calibration
+command from the first memory device or an adjacent memory device (Fig. 4, [0023],
+
+[0024] token passing).
+
+Regarding claim 20, all the limitations of claim 16 are taught by Tatapudi.
+
+Tatapudi further teaches a method, wherein each of the plurality of memory devices is
+configured to determine a resistance and a target output high level voltage of an output driver
+by performing the impedance calibration operation (Fig. 1, [0020] adjust impedance; [0021]
+control code to enable/disable pull up transistors), and wherein the output driver is
+configured to output data externally to each of the plurality of memory devices (Fig. /,
+
+[0019] [0020] output data buffer 176).Application/Control Number: 15/922,332 Page 8
+Art Unit: 2844
+
+Allowable Subject Matter
+6. Claims 3-12, 14, 19 are objected to as being dependent upon a rejected base claim, but
+would be allowable if rewritten in independent form including all of the limitations of the
+
+base claim and any intervening claims.
+
+The following is a statement of reasons for the indication of allowable subject matter:
+
+Regarding claim 3, the prior arts fail to teach or reasonably suggest a memory
+
+module comprising:
+
+an impedance calibration circuit connected to the first reception pad, the first
+transmission pad, the impedance pad, and the selection pad,
+
+wherein the impedance calibration circuit comprises:
+
+a detector connected to the selection pad, and configured to generate a detection
+signal;
+
+a command controller connected to the first reception pad and the first transmission
+pad, wherein the command controller is configured to receive the impedance calibration
+command from one of the first reception pad and a corresponding command decoder; and
+
+a calibration circuit connected to the external resistor through the impedance pad,
+20wherein the calibration circuit is configured to perform the impedance calibration
+operation to output a pull-up control code and a pull-down control code to the output driver,
+and is configured to provide the command controller with a first comparison signal and a
+second comparison signal which indicate a completion of the impedance calibration
+
+operation, in combination with the other limitations of the claim.Application/Control Number: 15/922,332 Page 9
+Art Unit: 2844
+
+Regarding claims 4-12, the claims 4-12 are objected due to their dependencies to
+
+claim 3.
+
+Regarding claim 14, this claim has substantially the same subject matter as that in
+
+claim 3. Therefore, claim 14 is objected under the same rationale as claim 3 above.
+
+Regarding claim 19, the prior arts fail to teach or reasonably suggest a method,
+
+wherein performing the impedance calibration operation sequentially in each of the plurality
+of memory devices from the first memory device further comprises: transferring, by the
+second memory device, the impedance calibration command to the first memory device using
+the ring topology, when the first memory device does not match with the second memory
+device; performing, in the first memory device, the impedance calibration operation for the
+first memory device, in response to the impedance calibration command performing, in each
+of other memory devices which are not selected as the master, the impedance calibration
+operation sequentially by receiving the impedance calibration command from the first
+memory device or an adjacent memory device, in combination with the other limitations of
+
+the claim.
+
+Any comments considered necessary by applicant must be submitted no later than the
+payment of the issue fee and, to avoid processing delays, should preferably accompany the
+issue fee. Such submissions should be clearly labeled “Comments on Statement of Reasons
+for Allowance.”
+
+ConclusionApplication/Control Number: 15/922,332 Page 10
+Art Unit: 2844
+
+Any inquiry concerning this communication or earlier communications from the
+examiner should be directed to SEOKJIN KIM whose telephone number is (571)272-1487. The
+examiner can normally be reached on M-F: 8:30am-5:00pm.
+
+Examiner interviews are available via telephone, in-person, and video conferencing using
+a USPTO supplied web-based collaboration tool. To schedule an interview, applicant is
+encouraged to use the USPTO Automated Interview Request (AIR) at
+http://www.uspto.gov/interviewpractice.
+
+If attempts to reach the examiner by telephone are unsuccessful, the examiner’s
+supervisor, Alexander H. Taningco can be reached on 571-272-8048. The fax phone number for
+the organization where this application or proceeding is assigned is 571-273-8300.
+
+Information regarding the status of an application may be obtained from the Patent
+Application Information Retrieval (PAIR) system. Status information for published applications
+may be obtained from either Private PAIR or Public PAIR. Status information for unpublished
+applications is available through Private PAIR only. For more information about the PAIR
+system, see http://pair-direct.uspto.gov. Should you have questions on access to the Private PAIR
+system, contact the Electronic Business Center (EBC) at 866-217-9197 (toll-free). If you would
+like assistance from a USPTO Customer Service Representative or access to the automated
+
+information system, call 800-786-9199 (IN USA OR CANADA) or 571-272-1000.
+
+/SEOKJIN KIM/
+Examiner, Art Unit 2844

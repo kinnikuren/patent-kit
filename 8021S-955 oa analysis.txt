@@ -1,0 +1,21 @@
+ 6. Claims 1-3, 7 and 13-15 are rejected under 35 U.S.C. 101 because the claimed invention is directed to a judicial exception (i.e., a law of nature, a natural phenomenon, or an abstract  idea) without significantly more.
+{'Claims 1-3, 7 and 13-15 are rejected under 35 U.S.C. 101 because the claimed invention': None}
+Claims 1-3, 7 and 13-15 are rejected under 35 U.S.C. 101 because the claimed invention
+ 8. Claims 1-4 and 6-15 are rejected under 35 U.S.C. 102(a)(1) as being anticipated by US  2006/0059444 AI - hereinafter "Murthy".
+{'Claims 1-4 and 6-15': None}
+Claims 1-4 and 6-15
+ 10. Claims 5 is rejected under 35 U.S.C. 103 as being unpatentable over US 2006/0059444  A] - hereinafter "Murthy", in view of US 2004/0187089 A1 - hereinafter "Schulz”.
+{'Claims 5': None}
+Claims 5
+ 11. Claims 16 and 20 are rejected under 35 U.S.C. 103 as being unpatentable over US 2006/0059444 A1 - hereinafter "Murthy", in view of US 8,266,224 B2 - hereinafter "Ramarao",  and in view of US 5,832,239 - hereinafter "Gavin".
+{'Claims 16 and 20': None}
+Claims 16 and 20
+ 12. Claim 17 is rejected under 35 U.S.C. 103 as being unpatentable over US 2006/0059444  Al - hereinafter "Murthy", in view of US 8,266,224 B2 - hereinafter "Ramarao”, and in view ofApplication/Control Number: 15/694,060 Page 19 Art Unit: 2192 
+{'Claim 17': None}
+Claim 17
+ 13. Claim 18 is rejected under 35 U.S.C. 103 as being unpatentable over US 2006/0059444  Al - hereinafter "Murthy", in view of US 8,266,224 B2 - hereinafter "Ramarao”, and in view ofApplication/Control Number: 15/694,060 Page 20 Art Unit: 2192 
+{'Claim 18': None}
+Claim 18
+ 14. Claim 19 is rejected under 35 U.S.C. 103 as being unpatentable over US 2006/0059444 Al - hereinafter "Murthy", in view of US 8,266,224 B2 - hereinafter "Ramarao”, and in view of US 5,832,239 - hereinafter "Gavin", and in further view of US 9,535,627 B2 - hereinafter  "Roberts".
+{'Claim 19': None}
+Claim 19
