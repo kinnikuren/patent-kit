@@ -122,10 +122,11 @@ def clean_OA(raw_oa):
 
 
 def main():
+    filename = '2018-09-21 15694060 nonfinal rejection.txt'
    #tokenize_test()
    #sentence_seg()
    
-   data = file_reader.getStringFromTxt('2018-09-21 15694060 nonfinal rejection.txt')
+   data = file_reader.getStringFromTxt(filename)
    clean_oa, numsubs = clean_OA(data)
    
    sentence_seg(clean_oa)

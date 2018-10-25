@@ -5,10 +5,9 @@ Created on Thu Oct 18 19:40:41 2018
 @author: alanyliu
 """
 import re
-
 import file_reader
 import file_writer
-import pdf2imagetest as p2i
+from pdf2image import convert_from_path, convert_from_bytes
 import pytesseractest as pytess
 
 
@@ -46,18 +45,54 @@ def findRejections(oa):
         print('list is empty')
     print(len(list))
 
+def rename_pdf_to_txt(pdf_file_name):
+    txt_file_name = pdf_file_name.replace('.pdf','.txt')
+    return txt_file_name
 
+def convert_pdf_to_images(filename):
+
+    print('converting pdf to images...')
+    images = convert_from_path(filename,dpi=200)
+    print('done converting pdf to images!')
+    
+    return images
+
+def convert_pdf_to_txt(pdf_file_name):
+    output_text_file = rename_pdf_to_txt(pdf_file_name)
+    output_folder = "output/"
+    output_path = output_folder + output_text_file
+    
+    images = convert_pdf_to_images(pdf_file_name)
+    
+    raw_string = pytess.convertImagesToString(images)
+    
+    file_writer.printStringToTxt(raw_string,output_path)
+    
+    return output_path
+    
         
 def main():
-    filename = '2018-09-21 15694060 nonfinal rejection.pdf'
-    outfilename = filename.replace('.pdf','.txt')
-    images = p2i.convertPdfToImages(filename)
+    filename = ""
+    invalid_input = True
     
-    rawdata = pytess.convertImagesToString(images)
-    
-    file_writer.printStringToTxt(rawdata,outfilename)
+    while invalid_input:
+        user_input = input("Convert PDF (Y/N)?")
 
-    data = file_reader.getStringFromTxt(outfilename)
+        if user_input.lower() == "y":
+            user_input = input("Provide PDF filename:")
+            filename = user_input            
+            output_path = convert_pdf_to_txt(filename)
+            
+            invalid_input = False
+        elif user_input.lower() == "n":
+            filename = "test.pdf"
+            output_path = "output/test.txt"
+            invalid_input = False
+        else:
+            print("did not understand")
+            invalid_input = True
+
+    data = file_reader.getStringFromTxt(output_path)
     clean_data = data.replace('\n\n','\n')
     data_split_space = data.split('\n')
     print(clean_data)

@@ -1,0 +1,29 @@
+Attorney Docket No. 80548-1225 (CY5019US)
+
+MEMORY MODULES, MEMORY SYSTEMS INCLUDING THE SAME, AND METHODS
+
+OF CALIBRATING MULTI-DIE IMPEDANCE OF THE MEMORY MODULES
+
+CROSS-REFERENCE TO RELATED APPLICATION
+[0001] This application claims priority under 35 U.S.C. § 119 to Korean Patent Application No.
+10-2017-0101408, filed on August 10, 2017 in the Korean Intellectual Property Office, the
+
+disclosure of which is incorporated by reference herein in its entirety.
+
+TECHNICAL FIELD
+[0002] Exemplary embodiments of the inventive concept described herein relate to memory
+devices, and more particularly, to memory modules, memory systems including the same, and
+
+methods of calibrating multi-die impedance of the memory modules.
+
+DISCUSSION OF RELATED ART
+[0003] As the operating speed of semiconductor memory devices has increased, swing width of
+signals interfaced between a semiconductor memory device and a memory controller has
+generally decreased. However, as swing width has decreased, signals transferred between the
+semiconductor memory device and the memory controller may be more easily distorted by
+impedance mismatch caused by process, voltage, and temperature (PVT) variations. An
+impedance calibration operation for adjusting output impedance and/or a termination impedance
+of the semiconductor memory device may be employed at transmitting and/or receiving stages of
+the semiconductor memory device. The impedance calibration operation may be referred to as an
+
+input/output (I/O) offset cancellation operation or a ZQ calibration operation.
