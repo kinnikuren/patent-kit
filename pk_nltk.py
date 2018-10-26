@@ -41,7 +41,9 @@ def create_classifier():
     
     return classifier
     
-def segment_sentences(classifier, words):
+def segment_sentences(classifier, one_string):
+    words = nltk.tokenize.word_tokenize(one_string)
+    
     start = 0
     sents = []
     for i, word in enumerate(words):
@@ -63,23 +65,7 @@ def sentence_seg(data):
         temp_string += w + '\n'
     file_writer.printStringToTxt(temp_string,'mushedwords.txt')
 
-    sents_new = segment_sentences(classifier, words)
-    for s in sents_new:
-        temp_sentence = ''
-        count = 0
-        for w in s:
-            temp_sentence += w + ' '
-            if w == 'rejected':
-                count+=1
-            if w == 'U.S.C':
-                count+=1
-        if count >= 2:
-            #print(s)
-            print(temp_sentence + '\n')
-            #pass
-        #print(s)
-        
-    
+    sents_new = segment_sentences(classifier, words)    
 
     #check_classifier(classifier, words)
 
@@ -112,19 +98,6 @@ def tokenize_test():
     #print(data)
     words = nltk.tokenize.word_tokenize(data)
     #print(words)
-    
-def clean_OA(raw_oa):
-    regex = r'(Application/Control.+,\d{3})|(Page.+\d{1,2})|(Art Unit.+\d{4})'
-    list = re.findall(regex,raw_oa,re.M)
-
-    print(list)
-    
-    (clean_oa, numsubs) = re.subn(regex, '', raw_oa)
-    
-    print(clean_oa)
-    print(numsubs)
-    
-    return clean_oa, numsubs
 
 
 def main():
@@ -138,4 +111,4 @@ def main():
     sentence_seg(clean_oa)
 
     
-main()
+#main()

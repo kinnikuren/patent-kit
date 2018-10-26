@@ -9,7 +9,7 @@ Created on Wed Oct 17 00:00:38 2018
 #print(data)
 #print(type(data))
   
-def getStringFromTxt(fileName):
-    with open(fileName, 'r') as myfile:
+def get_string_from_txt(txt_file_name):
+    with open(txt_file_name, 'r') as myfile:
         data = myfile.read()
     return data
