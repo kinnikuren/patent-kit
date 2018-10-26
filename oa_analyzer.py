@@ -5,11 +5,12 @@ Created on Thu Oct 18 19:40:41 2018
 @author: alanyliu
 """
 import re
-import file_reader
-import file_writer
 from pdf2image import convert_from_path, convert_from_bytes
 import pytesseractest as pytess
 
+import file_reader
+import file_writer
+import pk_nltk
 
 class OfficeAction:
     rejections = []
@@ -18,6 +19,7 @@ class OfficeAction:
 
 class Rejection:
     def __init__(self):
+        self.raw_text = ''
         self.claims = []
         self.references = {}
         self.claims_refs = {}
@@ -69,6 +71,64 @@ def convert_pdf_to_txt(pdf_file_name):
     file_writer.printStringToTxt(raw_string,output_path)
     
     return output_path
+
+def clean_oa(raw_oa):
+    regex = r'(Application/Control.+,\d{3})|(Page.+\d{1,2})|(Art Unit.+\d{4})'
+    list = re.findall(regex,raw_oa,re.M)
+
+    print(list)
+    
+    (clean_oa, numsubs) = re.subn(regex, '', raw_oa)
+    
+    #print(clean_oa)
+    #print(numsubs)
+    
+    return clean_oa, numsubs
+
+def find_rejections(oa_sentences):
+    rej_sentences = []
+    regex_three_digits = re.compile(r'\d{3}')
+    regex_ref_no = re.compile(r'\d{1}')
+    
+    for s in oa_sentences:
+        rej_sentence = ''
+        count = 0
+        is_rejected = False
+        is_usc = False
+        found_section = False
+        ref_list = []
+        
+        for i in range(len(s)):
+            rej_sentence += s[i] + ' '
+            section_index = 0
+            
+            if s[i] == 'rejected':
+                count+=1
+                is_rejected = True
+            if s[i] == 'U.S.C' and is_rejected:
+                count+=1
+                is_usc = True
+            if re.match(regex_three_digits,s[i]) and (len(s[i]) == 3) and is_usc:
+                code_section = s[i]
+                found_section = True
+                section_index = i
+            if found_section and (i > section_index):
+                digit_list = re.findall(regex_ref_no,s[i])
+                #print(digit_list)
+                if (len(digit_list) > 6):
+                    ref_list.append("".join(digit_list))
+        if count >= 2:
+            #print(s)
+            print(rej_sentence + '\n')
+            print(code_section + '\n')
+            print(ref_list)
+            rej_sentences.append(rej_sentence)
+            #pass
+        #print(s)
+
+def get_test_string():
+    return file_reader.get_string_from_txt(
+            '2018-09-21 15694060 nonfinal rejection.txt')
     
         
 def main():
@@ -142,4 +202,22 @@ def main():
             #print(data_split_space[i+1])
     #findRejections(data)
     
-main()
+def test_main():
+    oa = OfficeAction()
+    
+    classifier = pk_nltk.create_classifier()
+    
+    test_data = get_test_string()
+    oa.raw_text = test_data
+    #print(test_data)
+    
+    cleaned_oa, num_subs = clean_oa(test_data)
+    
+    oa_sentences = pk_nltk.segment_sentences(classifier, cleaned_oa)
+    
+    find_rejections(oa_sentences)
+    
+    #print(oa_sentences)
+    
+#main()
+test_main()

@@ -65,23 +65,7 @@ def sentence_seg(data):
         temp_string += w + '\n'
     file_writer.printStringToTxt(temp_string,'mushedwords.txt')
 
-    sents_new = segment_sentences(classifier, words)
-    for s in sents_new:
-        temp_sentence = ''
-        count = 0
-        for w in s:
-            temp_sentence += w + ' '
-            if w == 'rejected':
-                count+=1
-            if w == 'U.S.C':
-                count+=1
-        if count >= 2:
-            #print(s)
-            print(temp_sentence + '\n')
-            #pass
-        #print(s)
-        
-    
+    sents_new = segment_sentences(classifier, words)    
 
     #check_classifier(classifier, words)
 

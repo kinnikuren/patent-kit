@@ -11,15 +11,15 @@ import re
 #nltk.download('treebank')
 #nltk.download()
 
-def sentence_seg(data):
+def create_classifier():
     sents = nltk.corpus.treebank_raw.sents()
     tokens = []
     boundaries = set()
     offset = 0
     
-    print(sents)
-    print(type(nltk.corpus.treebank_raw))
-    print(type(sents))
+    #print(sents)
+    #print(type(nltk.corpus.treebank_raw))
+    #print(type(sents))
     
     for sent in sents:
         tokens.extend(sent)
@@ -38,6 +38,22 @@ def sentence_seg(data):
     classifier = nltk.NaiveBayesClassifier.train(train_set)
     accuracy = nltk.classify.accuracy(classifier, test_set)
     print(accuracy)
+    
+    return classifier
+    
+def segment_sentences(classifier, words):
+    start = 0
+    sents = []
+    for i, word in enumerate(words):
+        if word in '.?!' and classifier.classify(punct_features(words, i)) == True:
+            sents.append(words[start:i+1])
+            start = i+1
+    if start < len(words):
+        sents.append(words[start:])
+    return sents
+
+def sentence_seg(data):
+    classifier = create_classifier()
     
     #data = file_reader.getStringFromTxt('2018-09-21 15694060 nonfinal rejection.txt')
     words = nltk.tokenize.word_tokenize(data)
@@ -66,17 +82,7 @@ def sentence_seg(data):
     
 
     #check_classifier(classifier, words)
-    
-def segment_sentences(classifier, words):
-    start = 0
-    sents = []
-    for i, word in enumerate(words):
-        if word in '.?!' and classifier.classify(punct_features(words, i)) == True:
-            sents.append(words[start:i+1])
-            start = i+1
-    if start < len(words):
-        sents.append(words[start:])
-    return sents
+
 
 def check_classifier(classifier, words):
     for i in range(len(words)):
@@ -123,13 +129,13 @@ def clean_OA(raw_oa):
 
 def main():
     filename = '2018-09-21 15694060 nonfinal rejection.txt'
-   #tokenize_test()
-   #sentence_seg()
+    #tokenize_test()
+    #sentence_seg()
    
-   data = file_reader.getStringFromTxt(filename)
-   clean_oa, numsubs = clean_OA(data)
+    data = file_reader.getStringFromTxt(filename)
+    clean_oa, numsubs = clean_OA(data)
    
-   sentence_seg(clean_oa)
+    sentence_seg(clean_oa)
 
     
 main()
