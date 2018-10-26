@@ -11,6 +11,8 @@ import re
 #nltk.download('treebank')
 #nltk.download()
 
+#retrain classifier
+
 def create_classifier():
     sents = nltk.corpus.treebank_raw.sents()
     tokens = []
@@ -81,11 +83,17 @@ def check_classifier(classifier, words):
             
 
 def punct_features(tokens, i):
-    return {'next-word-capitalized': tokens[i+1][0].isupper(),
-            'prev-word': tokens[i-1].lower(),
-            'punct': tokens[i]
-            #'prev-word-is-one-char': len(tokens[i-1]) == 1
-            }
+    features = {'prev-word': tokens[i-1].lower(),
+                'punct': tokens[i]
+                #'prev-word-is-one-char': len(tokens[i-1]) == 1
+                }
+    if i+1 >= len(tokens):
+        features['next-word-capitalized-or-none'] = True
+    else:
+        #print(i)
+        #print(len(tokens))
+        features['next-word-capitalized-or-none'] = tokens[i+1][0].isupper()
+    return features
 
 """
 def ref_features(word):
