@@ -83,6 +83,8 @@ def clean_oa(oa):
     print(list)
     
     (clean_oa, numsubs) = re.subn(regex, '', oa.raw_text)
+    
+    #temp fix
     clean_oa = clean_oa.replace("et al.","et al")
     
     oa.cleaned_text_tuple = (clean_oa, numsubs)
@@ -121,14 +123,20 @@ def find_rejections(oa):
                 section_index = i
             if found_section and (i > section_index):
                 digit_list = re.findall(regex_ref_no,s[i])
-                #print(digit_list)
+                print(digit_list)
                 if (len(digit_list) > 6):
                     ref_list.append("".join(digit_list))
                 
+                #if reference list is empty and
+                #if not the last word
+                #look in next word for reference
+                
+                """this logic needs work
                 if (len(ref_list) == 0) and ((i+1)!=len(s)):
                     digit_list = re.findall(regex_ref_no,s[i+1])
                     if (len(digit_list) > 6):
                         ref_list.append("".join(digit_list))
+                """
 
                 
         if count >= 2: #fix condition
@@ -150,21 +158,21 @@ def find_rejections(oa):
         #print(s)
         
 def find_claims_in_text(text):
-    matchObj = re.search(r'(Claim.+)(?:\s)(?:is|are)',text)
+    matchObj = re.search(r'(Claim.+)(?:\s)(?:is|are)(?:\srejected)',text)
     #matchObj = re.search(r'(Claim.+)(?:(\s(is|are)))',temp)
     #print(type(matchObj))
     #print(rej.claims_refs)
     if matchObj:
-        #print(matchObj.groups())
-        #print(matchObj.group(1))
+        print(matchObj.groups())
+        print(matchObj.group(1))
         #rej.claims_refs[matchObj.group(1)] = None
         return(matchObj.group(1))
 
 def get_test_string():
     return file_reader.get_string_from_txt(
-            '2018-09-21 15694060 nonfinal rejection.txt')
+            #'2018-09-21 15694060 nonfinal rejection.txt')
             #'2018-09-18 15599191 nonfinal rejection.txt')
-            #'2018-09-26 15332415 final rejection.txt')
+            '2018-09-26 15332415 final rejection.txt')
     
         
 def main():
@@ -266,6 +274,7 @@ def test_main():
     for r in oa.rejections:
         print("****")
         print(r.rejection_text)
+        print("Claims:")
         print(r.claims)
         print("Section:")
         print(r.section)
