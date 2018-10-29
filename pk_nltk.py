@@ -196,7 +196,7 @@ def main():
 
     
 #main()
-create_classifier()
+#create_classifier()
 
 #create_labeled_set()
 
