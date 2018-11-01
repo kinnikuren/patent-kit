@@ -10,6 +10,6 @@ Created on Wed Oct 17 00:00:38 2018
 #print(type(data))
   
 def get_string_from_txt(txt_file_name):
-    with open(txt_file_name, 'r', encoding="utf8") as myfile:
+    with open(txt_file_name, 'r', encoding="ansi") as myfile:
         data = myfile.read()
     return data

@@ -63,24 +63,31 @@ def convert_pdf_to_images(filename):
     
     return images
 
-def convert_pdf_to_txt(pdf_file_name):
-    output_text_file = rename_pdf_to_txt(pdf_file_name)
-    output_folder = "output/"
-    output_path = output_folder + output_text_file
+def convert_pdf_to_txt(pdf_file_path):
+    output_path = rename_pdf_to_txt(pdf_file_path)
+    #output_folder = "output/"
+    #output_path = output_folder + output_text_file
     
-    images = convert_pdf_to_images(pdf_file_name)
+    images = convert_pdf_to_images(pdf_file_path)
     
     raw_string = pytess.convertImagesToString(images)
     
-    file_writer.printStringToTxt(raw_string,output_path)
+    file_writer.print_string_to_txt(raw_string,output_path)
     
     return output_path
 
 def clean_oa(oa):
+    match_obj = re.search(r'(detailed action)',oa.raw_text.lower())
+    if (match_obj):
+        print("found detailed action heading")
+        print(match_obj.groups())
+        print(match_obj.start(0))
+        
+    
     regex = r'(Application/Control.+,\d{3})|(Page.+\d{1,2})|(Art Unit.+\d{4})'
-    list = re.findall(regex,oa.raw_text,re.M)
+    #list = re.findall(regex,oa.raw_text,re.M)
 
-    print(list)
+    #print(list)
     
     (clean_oa, numsubs) = re.subn(regex, '', oa.raw_text)
     
@@ -121,9 +128,11 @@ def find_rejections(oa):
                 code_section = s[i]
                 found_section = True
                 section_index = i
+            
+            #this screws up when a space separates the ref no
             if found_section and (i > section_index):
                 digit_list = re.findall(regex_ref_no,s[i])
-                print(digit_list)
+                #print(digit_list)
                 if (len(digit_list) > 6):
                     ref_list.append("".join(digit_list))
                 
@@ -175,7 +184,7 @@ def get_test_string():
             '2018-09-26 15332415 final rejection.txt')
     
         
-def main():
+def main_old():
     filename = ""
     invalid_input = True
     
@@ -246,13 +255,26 @@ def main():
             #print(data_split_space[i+1])
     #findRejections(data)
     
-def test_main():
+def main():
     oa = OfficeAction()
     
     classifier = pk_nltk.create_classifier()
     
-    test_data = get_test_string()
-    oa.raw_text = test_data
+    #data = get_test_string()
+    
+    #get data
+    oa_filepath = input("provide OA file path (pdf or raw txt):")
+    if (oa_filepath.endswith("pdf")):
+        txt_path = convert_pdf_to_txt(oa_filepath)
+    else:
+        txt_path = oa_filepath
+       
+    #temporary    
+    txt_path = "cases/8054L-1152/2018-10-02 15671415 nonfinal rejection.txt"
+    
+    data = file_reader.get_string_from_txt(txt_path)
+
+    oa.raw_text = data
     #print(test_data)
     
     cleaned_oa, num_subs = clean_oa(oa)
@@ -271,6 +293,7 @@ def test_main():
     print("No. of substitutions from clean:")
     print(oa.cleaned_text_tuple[1])
     
+    ref_set = set()
     for r in oa.rejections:
         print("****")
         print(r.rejection_text)
@@ -280,6 +303,10 @@ def test_main():
         print(r.section)
         print("References:")
         print(r.references)
+        ref_set.update(r.references)
+        
+    print("pat2pdf search string:")
+    print(ref_set)
+    print("; ".join(ref_set))
     
-#main()
-test_main()
+main()

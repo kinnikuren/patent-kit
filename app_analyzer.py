@@ -8,6 +8,7 @@ import re
 import nltk
 import csv
 import numpy as np
+import docx
 import io
 
 import file_reader
@@ -90,40 +91,55 @@ def test_main():
 
 test_main()
 
-print(ref_numeral_features("111"))
+#print(ref_numeral_features("111"))
 #print(int("11x"))
 
-#test_2 = np.genfromtxt(io.StringIO('test.csv'), delimiter='|', names=True)
-data = []
-featuresets = []
-count = 0
-with open('test.csv', newline='') as csvfile:
-    csvreader = csv.reader(csvfile, delimiter='|')
-    print(type(csvreader))
-    for row in csvreader:
-        #print(row)
-        featureset = ref_numeral_features(row[0])
-        label = False
-        if row[1] == "1":
-            label = True
-            count += 1
-        else:
+
+def get_featuresets():
+    #read csv of labeled data
+    #create list of feature sets with labels
+    #test_2 = np.genfromtxt(io.StringIO('test.csv'), delimiter='|', names=True)
+    data = []
+    featuresets = []
+    count = 0
+    with open('test.csv', newline='') as csvfile:
+        csvreader = csv.reader(csvfile, delimiter='|')
+        print(type(csvreader))
+        for row in csvreader:
+            #print(row)
+            featureset = ref_numeral_features(row[0])
             label = False
-        row[1] = label
-        
-        featuresets.append((featureset,label))
-        data.append(row)
-        #print(', '.join(row))
-        #print(type(row))
-        
-print(data)
-print(featuresets)
+            if row[1] == "1":
+                label = True
+                count += 1
+            else:
+                label = False
+            row[1] = label
+            
+            featuresets.append((featureset,label))
+            data.append(row)
+            #print(', '.join(row))
+            #print(type(row))
+            
+    print(data)
+    print(featuresets)
+    return featuresets
 
-np.random.shuffle(featuresets)
-classifier = pk_nltk.train_classifier(featuresets)
+def get_trained_classifier():
+    featuresets = get_featuresets()
+    
+    #randomize data
+    np.random.shuffle(featuresets)
+    classifier = pk_nltk.train_classifier(featuresets)
+    
+    return classifier
 
+classifier = get_trained_classifier()
+
+#read app in .txt to string
 raw_text = file_reader.get_string_from_txt('1225.txt')
 
+#tokenize raw text
 words = nltk.word_tokenize(raw_text)
 
 test_set = set()
@@ -133,6 +149,7 @@ new_dataset = []
 for w in words:
     #print(w)
     #print(classifier.classify(ref_numeral_features(w)))
+    
     new_dataset.append((w,classifier.classify(ref_numeral_features(w))))
     if (classifier.classify(ref_numeral_features(w))):
         #print(w)
@@ -146,9 +163,3 @@ print(new_dataset)
 #print(test_2)
 #print(len(test_2))
 
-#print(count)
-
-def test1(token):
-    return sum([0 if i.isupper() else 1 for i in token])
-
-#print(test1("ABx"))
