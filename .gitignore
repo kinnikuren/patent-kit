@@ -7,5 +7,11 @@ __pycache__/
 .spyderproject
 .spyproject
 
-# Test files
+# Test/data files
 *.test
+*.csv
+*.doc
+*.docx
+*.txt
+*.png
+*.xlsx
