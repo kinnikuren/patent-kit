@@ -9,4 +9,4 @@ def print_string_to_txt(string,output_file_name):
     with open(output_file_name, "w") as text_file:
         print(string, file=text_file)
     
-    print('done printing to file')
+    print('done printing string to ' + output_file_name)
