@@ -77,12 +77,13 @@ def convert_pdf_to_txt(pdf_file_path):
     return output_path
 
 def clean_oa(oa):
+    """
     match_obj = re.search(r'(detailed action)',oa.raw_text.lower())
     if (match_obj):
         print("found detailed action heading")
         print(match_obj.groups())
         print(match_obj.start(0))
-        
+    """    
     
     regex = r'(Application/Control.+,\d{3})|(Page.+\d{1,2})|(Art Unit.+\d{4})'
     #list = re.findall(regex,oa.raw_text,re.M)
@@ -270,7 +271,7 @@ def main():
         txt_path = oa_filepath
        
     #temporary    
-    txt_path = "cases/8054L-1152/2018-10-02 15671415 nonfinal rejection.txt"
+    txt_path = "cases/8836S-1361T/2018-10-19 15354000 nonfinal rejection.txt"
     
     data = file_reader.get_string_from_txt(txt_path)
 
@@ -279,7 +280,18 @@ def main():
     
     cleaned_oa, num_subs = clean_oa(oa)
     
-    oa_sentences = pk_nltk.segment_sentences(classifier, 
+    match_obj = re.search(r'(DETAILED\sACTION)',cleaned_oa)
+    
+    if (match_obj):
+        print('found detailed action heading')
+        print(match_obj.groups())
+        detailed_action_start = match_obj.start(1)
+        print(detailed_action_start)
+        
+    oa_detailed_action = cleaned_oa[detailed_action_start:]
+    
+    
+    oa_sentences = pk_nltk.segment_sentences(classifier,  
                                              oa.cleaned_text_tuple[0])
     oa.sentences = oa_sentences
     

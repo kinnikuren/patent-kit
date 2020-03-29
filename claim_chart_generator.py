@@ -14,7 +14,7 @@ import datetime
 
 claims = {}
 #filepath = '8836S-1189 claims.txt'
-filepath = "cases/8054L-1152/8054L-1152 claims.txt"
+filepath = "cases/8836S-1361T/8836S-1361T claims.txt"
 claimsString = file_reader.get_string_from_txt(filepath)
 
 list = re.findall(r'[0-9]{1,2}\..*$',claimsString,re.M)
