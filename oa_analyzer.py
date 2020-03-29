@@ -51,31 +51,6 @@ def findRejections(oa):
         print('list is empty')
     print(len(list))
 
-def rename_pdf_to_txt(pdf_file_name):
-    txt_file_name = pdf_file_name.replace('.pdf','.txt')
-    return txt_file_name
-
-def convert_pdf_to_images(filename):
-
-    print('converting pdf to images...')
-    images = convert_from_path(filename,dpi=200)
-    print('done converting pdf to images!')
-    
-    return images
-
-def convert_pdf_to_txt(pdf_file_path):
-    output_path = rename_pdf_to_txt(pdf_file_path)
-    #output_folder = "output/"
-    #output_path = output_folder + output_text_file
-    
-    images = convert_pdf_to_images(pdf_file_path)
-    
-    raw_string = pytess.convertImagesToString(images)
-    
-    file_writer.print_string_to_txt(raw_string,output_path)
-    
-    return output_path
-
 def clean_oa(oa):
     """
     match_obj = re.search(r'(detailed action)',oa.raw_text.lower())
@@ -260,6 +235,8 @@ def main():
     oa = OfficeAction()
     
     classifier = pk_nltk.create_classifier()
+
+    """
     
     #data = get_test_string()
     
@@ -274,6 +251,9 @@ def main():
     txt_path = "cases/8836S-1361T/2018-10-19 15354000 nonfinal rejection.txt"
     
     data = file_reader.get_string_from_txt(txt_path)
+    """
+      
+    data = file_reader.get_string_from_file()
 
     oa.raw_text = data
     #print(test_data)
