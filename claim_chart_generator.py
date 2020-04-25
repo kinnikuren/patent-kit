@@ -32,6 +32,8 @@ def main():
     
     filepath = file_reader.get_filepath()
     
+    location = file_reader.get_folder(filepath)
+    
     if (filepath.endswith(".txt") or filepath.endswith(".pdf")):    
         claims_string = file_reader.get_string_from_file(filepath).strip()
     elif (filepath.endswith(".docx")):
@@ -131,7 +133,7 @@ def main():
     currentTime = str(datetime.datetime.now()).split('.')[0].replace('-','').replace(' ','').replace(':','')
     
     #filepath = '{}_{}.png'.format(filepath.replace('.txt',''),currentTime)    
-    output_path = "output.png"
+    output_path = location + "claim_chart.png"
     graph.write_png(output_path)
     print("flowchart generated at {}...".format(output_path))
     

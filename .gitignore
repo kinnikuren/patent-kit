@@ -17,6 +17,7 @@ __pycache__/
 *.jpg
 *.xlsx
 *.pdf
+*.p
 
 # Output folder
 output/

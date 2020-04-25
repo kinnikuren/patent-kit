@@ -5,6 +5,7 @@ Created on Wed Oct 17 00:00:38 2018
 @author: alanyliu
 """
 from pdf2image import convert_from_path, convert_from_bytes
+import pickle
 import pytesseractest as pytess
 
 from tkinter import filedialog
@@ -24,22 +25,33 @@ def rename_pdf_to_txt(pdf_file_name):
     txt_file_name = pdf_file_name.replace('.pdf','.txt')
     return txt_file_name
 
-def convert_pdf_to_images(filename):
+def convert_pdf_to_images(filename,dpi=500,output_files=False):
 
-    print('converting {} to images...'.format(filename))
-    images = convert_from_path(filename,dpi=500)
-    for image in images:
-        image.save('out.jpg', 'JPEG')
+    print('converting {} to images at {} dpi...'.format(filename, dpi))
+    images = convert_from_path(filename,dpi=dpi)
+    if output_files:
+        for i in range(len(images)):
+            output_file_name = 'output/out' + str(i+1) + '.jpg'
+            print('converting page ' + str(i+1) + ' and outputting as ' + output_file_name)
+            images[i].save(output_file_name, 'JPEG')
     print('done converting pdf to images!')
+    
+    print('saving images to images.p')
+    filehandler = open('images.p','wb')
+    pickle.dump(images, filehandler)
     
     return images
 
-def convert_pdf_to_txt(pdf_file_path):
+def convert_pdf_to_txt(pdf_file_path,use_pickle=True):
     output_path = rename_pdf_to_txt(pdf_file_path)
     #output_folder = "output/"
     #output_path = output_folder + output_text_file
     
-    images = convert_pdf_to_images(pdf_file_path)
+    if use_pickle:
+        filehandler = open('images.p', 'r')
+        images = pickle.load(filehandler)
+    else:
+        images = convert_pdf_to_images(pdf_file_path)
     
     raw_string = pytess.convertImagesToString(images)
     
@@ -80,3 +92,27 @@ def get_string_from_file(filepath = ""):
        
     #temporary    
     #txt_path = "cases/8071-762/2018-10-10 15337185 nonfinal rejection.txt"
+    
+def get_folder(filepath):
+    slash_split = re.split(r'(\/)',filepath)
+    print(slash_split)
+    
+    folder = "".join(slash_split[0:len(slash_split)-1])
+    
+    print(folder)
+    return folder
+    
+
+def main():
+    filepath = get_filepath()
+    print(filepath)
+    
+    get_folder(filepath)
+
+    #convert_pdf_to_images(filepath,200,True)
+
+
+#main()
+
+#temp
+#convert_pdf_to_images("LO-290903-US(DRAWINGS).pdf",200)

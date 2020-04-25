@@ -8,7 +8,7 @@ Created on Tue Oct 16 22:25:02 2018
 from docx import Document
 
 
-document = Document('8054S-1225-FINAL APPLN.docx')
+document = Document('11-09-AY7072US-order.docx')
 count = 1
 for p in document.paragraphs:
     #print(count)

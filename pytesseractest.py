@@ -21,18 +21,25 @@ import pytesseract
 
 #oa_string = pytesseract.image_to_string(Image.open('office_action_test.png'))
 
-def convertImagesToString(images):
-    whole_oa_string = ''
+def convert_images_to_string(images):
+    #whole_oa_string = ''
+    
+    ocr_dict = {}
+    
     count = 1
 
     print('converting images to string')
     for img in images:
-        whole_oa_string += pytesseract.image_to_string(img)
+        #whole_oa_string += pytesseract.image_to_string(img)
+        text = pytesseract.image_to_string(img)
+        ocr_dict[count] = text
+        
         print("page {} converted".format(count))
         count += 1
     print('done converting to string')
     
-    return whole_oa_string
+    #return whole_oa_string
+    return ocr_dict
 
 def printStringToTxt(string,outputfilename):
     with open(outputfilename, "w") as text_file:
