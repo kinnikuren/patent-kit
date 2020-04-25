@@ -16,49 +16,19 @@ from docx import Document
 import sys
 
 
-def main():
-    """
-    filepath = fr.get_filepath()
-    print(filepath)
-
-    images = fr.convert_pdf_to_images(filepath,300)
-    """
-    
-    """
-    filehandler = open('images.p', 'rb')
-    images = pickle.load(filehandler)
-    
-    #print(pytesseract.image_to_string(images[0]))
-    print(pytesseract.image_to_data(images[0]))
-    """
-
-    
-    """
-    ocr_dict = pytess.convert_images_to_string(images)
-    
-    filehandler = open('ocr_dict.p','wb')
-    pickle.dump(ocr_dict, filehandler)
-    
-    print(ocr_dict)
-    """
-    
-    #output_path = fr.convert_pdf_to_txt(filepath)
-    
-    #print(output_path)
-    
+def get_drawings_data():
     csv_dict = {}
-    
-    ref_numerals_set = set()
     
     ref_numerals_dict = {}
 
 
+    #read in csv containing drawings information
+    #first col, page #
+    #second col, reference numeral
     with open('test.csv', newline='', encoding='utf-8-sig') as csvfile:
         
         reader = csv.reader(csvfile, delimiter=',')
         for row in reader:
-            
-            ref_numerals_set.add(row[1])
             
             #if page not in dict
             if row[0] not in csv_dict.keys():
@@ -74,14 +44,9 @@ def main():
        
     print(csv_dict)
     
-    #sys.exit()
-        
-    raw_text = fr.get_string_from_txt('testapp.txt')
-    
-    words = nltk.word_tokenize(raw_text)
-    
-    
+    return csv_dict, ref_numerals_dict
 
+def analyze_drawings_against_application(csv_dict, raw_text):
     
     no_count = 0
     
@@ -138,7 +103,6 @@ def main():
                 
             output_list.append([page, ref_numeral, is_found, element, previously_illustrated])
     
-    print(csv_dict)
     print(output_list)
     
     print("no count: " + str(no_count))
@@ -148,22 +112,14 @@ def main():
         
         for row in output_list:
             writer.writerow(row)
-        
-        
-    #print(ref_numerals_set)
-    #print(len(ref_numerals_set))
-    
-       
+            
+            
+def find_ref_numerals_in_application(ref_numerals_dict, raw_text):
     #find all paragraphs
     regex = "(\[\d{1,10}\])(.+)"
     
     all_paragraphs = re.findall(regex, raw_text)
     print(all_paragraphs)
-    
-    para_dict = {}
-    
-    for para in all_paragraphs:
-        pass
     
     
     #print(ref_numerals_dict)
@@ -209,7 +165,51 @@ def main():
         writer = csv.writer(csvfile)
         
         for row in ref_numeral_breakdown:
-            writer.writerow(row)
+            writer.writerow(row)    
+    
+
+def main():
+    """
+    filepath = fr.get_filepath()
+    print(filepath)
+
+    images = fr.convert_pdf_to_images(filepath,300)
+    """
+    
+    """
+    filehandler = open('images.p', 'rb')
+    images = pickle.load(filehandler)
+    
+    #print(pytesseract.image_to_string(images[0]))
+    print(pytesseract.image_to_data(images[0]))
+    """
+
+    
+    """
+    ocr_dict = pytess.convert_images_to_string(images)
+    
+    filehandler = open('ocr_dict.p','wb')
+    pickle.dump(ocr_dict, filehandler)
+    
+    print(ocr_dict)
+    """
+    
+    #output_path = fr.convert_pdf_to_txt(filepath)
+    
+    #print(output_path)
+    
+        
+    #sys.exit()
+        
+    raw_text = fr.get_string_from_txt('testapp.txt')
+    
+    words = nltk.word_tokenize(raw_text)
+    
+    csv_dict, ref_numerals_dict = get_drawings_data()
+
+    analyze_drawings_against_application(csv_dict, raw_text)
+       
+    find_ref_numerals_in_application(ref_numerals_dict, raw_text)
     
     """
     document = Document('11-09-AY7072US-order.docx')
