@@ -16,7 +16,27 @@ from docx import Document
 import sys
 
 
-def get_drawings_data():
+def convert_drawings_to_images(output_files=False, generate_pickle=False):
+    filepath = fr.get_filepath()
+    print(filepath)
+
+    images = fr.convert_pdf_to_images(filepath,300,output_files,generate_pickle)
+    
+    return images
+
+
+def ocr_images(images, read_pickle=False):
+    if read_pickle:
+        filehandler = open('images.p', 'rb')
+        images = pickle.load(filehandler)
+    
+    #print(pytesseract.image_to_string(images[0]))
+    print(pytesseract.image_to_data(images[0]))
+    
+    pytess.convert_images_to_string(images, True)
+    
+    
+def get_drawings_data(filepath):
     csv_dict = {}
     
     ref_numerals_dict = {}
@@ -25,7 +45,7 @@ def get_drawings_data():
     #read in csv containing drawings information
     #first col, page #
     #second col, reference numeral
-    with open('test.csv', newline='', encoding='utf-8-sig') as csvfile:
+    with open(filepath, newline='', encoding='utf-8-sig') as csvfile:
         
         reader = csv.reader(csvfile, delimiter=',')
         for row in reader:
@@ -42,7 +62,7 @@ def get_drawings_data():
             
             #print(', '.join(row))
        
-    print(csv_dict)
+    #print(csv_dict)
     
     return csv_dict, ref_numerals_dict
 
@@ -64,12 +84,21 @@ def analyze_drawings_against_application(csv_dict, raw_text):
             else:
                 previously_illustrated = True
                 
+
+            #first check if ref numeral exists
+            regex = ref_numeral + "(\s|\.|\,|\;|\))"
+            x = re.search(regex, raw_text)
+            is_found = None
+            if x:
+                is_found = True
+            else:
+                is_found = False
             
-            regex = "\s\w+\s\w+\s\w+\s\w+\s" + ref_numeral
+            
+            regex = "(\s\w+){2,4}\s" + ref_numeral
             print(regex)
             x = re.search(regex, raw_text)
             element = None
-            is_found = ""
             if x:
                 #print(x.group(0))
                 words = nltk.word_tokenize(x.group(0))
@@ -92,10 +121,8 @@ def analyze_drawings_against_application(csv_dict, raw_text):
                 print(element)
                 
                 ref_numerals[ref_numeral] = "Yes"
-                is_found = "Yes"
             else:
                 ref_numerals[ref_numeral] = "No"
-                is_found = "No"
                 no_count += 1
                 
             if element != None:
@@ -128,38 +155,47 @@ def find_ref_numerals_in_application(ref_numerals_dict, raw_text):
     
     for ref_numeral in sorted(ref_numerals_dict.keys()):
         print(ref_numeral)
+        results_found = False
+        
         for para in all_paragraphs:
-            regex = "\s\w+\s\w+\s\w+\s\w+\s" + ref_numeral
+            
+
+            regex = "((\s\w+){2,4})\s" + "(" + ref_numeral + ")"
             
             results = re.findall(regex, para[1])
             if len(results) > 0:
+                results_found = True
                 print(results)
                 corresponding_paragraph = para[0]
                 print(corresponding_paragraph)
                 
-            for result in results:
-                words = nltk.word_tokenize(result)
-                #print(words)
-                pos_tagged_words = nltk.pos_tag(words)
-                
-                element = []
-                for i in range(len(pos_tagged_words)-1,-1,-1):
-                    if pos_tagged_words[i][1] not in ["TO", "CC", "VBP", "DT"]:
-                        element.append(pos_tagged_words[i][0])
-                    elif pos_tagged_words[i][1] == "DT":
-                        element.append(pos_tagged_words[i][0])
-                        break
-                    else:
-                        break
+                for result in results:
+                    tokenize_target = result[0] + " " + result[2]
+                    words = nltk.word_tokenize(tokenize_target)
+                    #print(words)
+                    pos_tagged_words = nltk.pos_tag(words)
                     
-                    #print(words[i])
-                element.reverse()
-                if element != None:
-                    element = ' '.join(element)
-                ref_numeral_breakdown.append([ref_numeral, element, corresponding_paragraph])
+                    element = []
+                    for i in range(len(pos_tagged_words)-1,-1,-1):
+                        if pos_tagged_words[i][1] not in ["TO", "CC", "VBP", "DT"]:
+                            element.append(pos_tagged_words[i][0])
+                        elif pos_tagged_words[i][1] == "DT":
+                            element.append(pos_tagged_words[i][0])
+                            break
+                        else:
+                            break
+                        
+                        #print(words[i])
+                    element.reverse()
+                    if element != None:
+                        element = ' '.join(element)
+                    ref_numeral_breakdown.append([ref_numeral, element, corresponding_paragraph])
+        
+        if not results_found:
+            ref_numeral_breakdown.append([ref_numeral, None, None])
 
             
-    print(ref_numeral_breakdown)
+    #print(ref_numeral_breakdown)
     
     with open('analyzed_ref_numerals.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
@@ -169,21 +205,20 @@ def find_ref_numerals_in_application(ref_numerals_dict, raw_text):
     
 
 def main():
-    """
-    filepath = fr.get_filepath()
-    print(filepath)
-
-    images = fr.convert_pdf_to_images(filepath,300)
-    """
     
-    """
-    filehandler = open('images.p', 'rb')
-    images = pickle.load(filehandler)
+    images = None
+    output_files = True
+    generate_pickle = False
+    images = convert_drawings_to_images(output_files, generate_pickle)
+  
     
-    #print(pytesseract.image_to_string(images[0]))
-    print(pytesseract.image_to_data(images[0]))
-    """
+    read_pickle = True
+    #ocr_images(images, read_pickle)
+    
+    #print(pytesseract.image_to_string("image_ref_numeral_only.jpg"))
+    
 
+    sys.exit()
     
     """
     ocr_dict = pytess.convert_images_to_string(images)
@@ -199,13 +234,20 @@ def main():
     #print(output_path)
     
         
+    print("open application txt file")
+    #get application txt file
+    filepath = fr.get_filepath()
+       
+    #get raw text of application  
+    raw_text = fr.get_string_from_txt(filepath)
+
+    print("open drawings csv")    
+    filepath = fr.get_filepath()
+    
+    csv_dict, ref_numerals_dict = get_drawings_data(filepath)
+    
+    print(ref_numerals_dict)
     #sys.exit()
-        
-    raw_text = fr.get_string_from_txt('testapp.txt')
-    
-    words = nltk.word_tokenize(raw_text)
-    
-    csv_dict, ref_numerals_dict = get_drawings_data()
 
     analyze_drawings_against_application(csv_dict, raw_text)
        

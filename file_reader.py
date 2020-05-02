@@ -6,6 +6,9 @@ Created on Wed Oct 17 00:00:38 2018
 """
 from pdf2image import convert_from_path, convert_from_bytes
 import pickle
+from docx import Document
+from docx.shared import Inches
+
 import pytesseractest as pytess
 
 from tkinter import filedialog
@@ -25,20 +28,32 @@ def rename_pdf_to_txt(pdf_file_name):
     txt_file_name = pdf_file_name.replace('.pdf','.txt')
     return txt_file_name
 
-def convert_pdf_to_images(filename,dpi=500,output_files=False):
+def convert_pdf_to_images(filename,dpi=500,output_files=False,generate_pickle=False):
 
     print('converting {} to images at {} dpi...'.format(filename, dpi))
     images = convert_from_path(filename,dpi=dpi)
+    document = Document()
+
     if output_files:
         for i in range(len(images)):
             output_file_name = 'output/out' + str(i+1) + '.jpg'
-            print('converting page ' + str(i+1) + ' and outputting as ' + output_file_name)
-            images[i].save(output_file_name, 'JPEG')
-    print('done converting pdf to images!')
+            
+            if output_files:
+                print('converting page ' + str(i+1) + ' and outputting as ' + output_file_name)
+                images[i].save(output_file_name, 'JPEG')
+            
+                document.add_picture(output_file_name,width=Inches(6))
+                document.add_page_break()
     
-    print('saving images to images.p')
-    filehandler = open('images.p','wb')
-    pickle.dump(images, filehandler)
+        document.save("drawings.docx")
+    print('done converting pdf to {} images!'.format(len(images)))
+    
+    if generate_pickle:
+        print('saving images to images.p')
+        filehandler = open('images.p','wb')
+        pickle.dump(images, filehandler)
+    else:
+        print("pickle not generated")
     
     return images
 

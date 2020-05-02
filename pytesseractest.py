@@ -5,6 +5,7 @@ Created on Thu Oct 18 15:47:08 2018
 @author: alanyliu
 """
 import pdf2imagetest as p2i
+import file_writer as fw
 
 try:
     from PIL import Image
@@ -21,7 +22,7 @@ import pytesseract
 
 #oa_string = pytesseract.image_to_string(Image.open('office_action_test.png'))
 
-def convert_images_to_string(images):
+def convert_images_to_string(images, output_file=False):
     #whole_oa_string = ''
     
     ocr_dict = {}
@@ -37,6 +38,17 @@ def convert_images_to_string(images):
         print("page {} converted".format(count))
         count += 1
     print('done converting to string')
+    
+    if output_file:
+        output_string = ""
+        
+        for page_no, text in ocr_dict.items():
+            output_string += str(page_no) + "\n" + text + "\n\n"
+            
+        
+        fw.print_string_to_txt(output_string, "output.txt")
+            
+        
     
     #return whole_oa_string
     return ocr_dict
