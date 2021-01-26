@@ -14,6 +14,8 @@ import pytesseractest as pytess
 from tkinter import filedialog
 from tkinter import *
 
+import os
+
 import file_writer
  
 #print(data)
@@ -33,10 +35,21 @@ def convert_pdf_to_images(filename,dpi=500,output_files=False,generate_pickle=Fa
     print('converting {} to images at {} dpi...'.format(filename, dpi))
     images = convert_from_path(filename,dpi=dpi)
     document = Document()
-
+    
+    current_folder = get_folder(filename)
+    
     if output_files:
+        new_folder = current_folder + "drawings"
+    
+        try:
+            os.mkdir(new_folder)
+        except OSError:
+            print ("Creation of the directory %s failed" % new_folder)
+        else:
+            print ("Successfully created the directory %s " % new_folder)
+
         for i in range(len(images)):
-            output_file_name = 'output/out' + str(i+1) + '.jpg'
+            output_file_name = new_folder + '/out' + str(i+1) + '.jpg'
             
             if output_files:
                 print('converting page ' + str(i+1) + ' and outputting as ' + output_file_name)
@@ -45,7 +58,8 @@ def convert_pdf_to_images(filename,dpi=500,output_files=False,generate_pickle=Fa
                 document.add_picture(output_file_name,width=Inches(6))
                 document.add_page_break()
     
-        document.save("drawings.docx")
+        print("saving drawings to word doc")
+        document.save(new_folder + "/drawings.docx")
     print('done converting pdf to {} images!'.format(len(images)))
     
     if generate_pickle:

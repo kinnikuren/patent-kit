@@ -19,7 +19,7 @@ def add_original_identifier(claims_string_regex_list):
         if i%2 != 0:
             current_entry += "\t(Original)  "
         list_with_original.append(current_entry)
-    print(list_with_original)   
+    #print(list_with_original)   
 
 def main():
     claims = {}
@@ -69,20 +69,37 @@ def main():
         print("Unsupported file format")
         raise SystemExit("Unsupported file format")
     
-    list = re.findall(r'[0-9]{1,2}\..*',claims_string,re.M)
+    
+    #remove initial tabs
+    claims_string_linebreak_split = claims_string.split('\n')
+    removed_tab_list = []
+    for line in claims_string_linebreak_split:
+        #print(line.strip())
+        removed_tab_list.append(line.strip())
+    new_claims_string = '\n'.join(removed_tab_list)
+    print('tabs removed:')
+    print(new_claims_string)                                                        
+    
+    list = re.findall(r'[0-9]{1,2}\..*',new_claims_string,re.M)
+    
+    print('\nFINDALL results:')
+    print(list)
+    print('\n\n')
+    
+    
     list2 = re.split(r'([0-9]{1,2}\.)',claims_string)
     
     #print(list)
     #print(len(list))
     
-    print(list2)
+    #print(list2)
     
     list3 = add_original_identifier(list2)
-    print(list3)
+    #print(list3)
     
     for i in list:
-        claimNo = re.match(r'[0-9]{1,2}',i).group(0)
-        print(claimNo)
+        claimNo = re.search(r'[0-9]{1,2}',i).group(0)
+        print('CLAIM ' + claimNo)
         #print(type(claimNo))
         #matchObj = re.search(r'claim [0-9]{1,2}',i,re.I)
         
@@ -101,8 +118,10 @@ def main():
                     
             if parClaimNo in claims:
                 claims[parClaimNo].append(claimNo)
+                print('added dependent claim {} to parent claim {}'.format(claimNo, parClaimNo))
             #depClaimNo = depClaimStr.replace()
             #print(matchObj.group(0))
+                print(claims)
             
         else:
             print('no match')
@@ -116,7 +135,7 @@ def main():
     graph = pydot.Dot(graph_type='graph')
     
     for i in claims:
-        print(i)
+        #print(i)
         # we can get right into action by "drawing" edges between the nodes in our graph
         # we do not need to CREATE nodes, but if you want to give them some custom style
         # then I would recomend you to do so... let's cover that later

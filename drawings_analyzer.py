@@ -14,6 +14,7 @@ import re
 import nltk
 from docx import Document
 import sys
+import tkinter as tk
 
 
 def convert_drawings_to_images(output_files=False, generate_pickle=False):
@@ -202,23 +203,56 @@ def find_ref_numerals_in_application(ref_numerals_dict, raw_text):
         
         for row in ref_numeral_breakdown:
             writer.writerow(row)    
-    
+
+def quit():
+    global root
+    root.destroy()
+
+root = tk.Tk()
 
 def main():
-    
+
     images = None
     output_files = True
-    generate_pickle = False
+    generate_pickle = True    
+
+    """ doesn't work
+
+    #root = tk.Tk()
+    global root
+    root.title("Convert drawings?")
+    frame = tk.Frame(root)
+    frame.pack()
+    
+    button = tk.Button(frame, 
+                       text="YES", 
+                       command=convert_drawings_to_images(output_files, generate_pickle))
+    button.pack(side=tk.LEFT)
+    
+    slogan = tk.Button(frame,
+                       text="NO",
+                       command=quit)
+    slogan.pack(side=tk.LEFT)
+    
+    
+    root.mainloop()    
+
+    print("root destroyed")
+    """
+    #sys.exit()
+    
+
     images = convert_drawings_to_images(output_files, generate_pickle)
   
-    
+  
+    sys.exit()
+  
+  
     read_pickle = True
     #ocr_images(images, read_pickle)
     
     #print(pytesseract.image_to_string("image_ref_numeral_only.jpg"))
     
-
-    sys.exit()
     
     """
     ocr_dict = pytess.convert_images_to_string(images)
