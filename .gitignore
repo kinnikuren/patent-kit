@@ -21,3 +21,15 @@ __pycache__/
 
 # Output folder
 output/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# VisualStudioCode
+.vscode/*

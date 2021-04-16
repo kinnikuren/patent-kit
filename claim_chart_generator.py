@@ -21,19 +21,10 @@ def add_original_identifier(claims_string_regex_list):
         list_with_original.append(current_entry)
     #print(list_with_original)   
 
-def main():
-    claims = {}
-    filepath=""
-    #filepath = '8836S-1189 claims.txt'
-    #filepath = "cases/8054L-1152/8054L-1152 claims.txt"
-    
-    #Temp
-    #filepath = "input/8836S_1317_claims.txt"
-    
-    filepath = file_reader.get_filepath()
-    
-    location = file_reader.get_folder(filepath)
-    
+    return list_with_original
+
+def get_claims_string(filepath):
+    claims_string = ""
     if (filepath.endswith(".txt") or filepath.endswith(".pdf")):    
         claims_string = file_reader.get_string_from_file(filepath).strip()
     elif (filepath.endswith(".docx")):
@@ -68,8 +59,10 @@ def main():
     else:
         print("Unsupported file format")
         raise SystemExit("Unsupported file format")
-    
-    
+
+    return claims_string
+
+def remove_tabs(claims_string):
     #remove initial tabs
     claims_string_linebreak_split = claims_string.split('\n')
     removed_tab_list = []
@@ -78,32 +71,28 @@ def main():
         removed_tab_list.append(line.strip())
     new_claims_string = '\n'.join(removed_tab_list)
     print('tabs removed:')
-    print(new_claims_string)                                                        
-    
-    list = re.findall(r'[0-9]{1,2}\..*',new_claims_string,re.M)
+    print(new_claims_string)   
+
+    return new_claims_string
+
+def create_claims_dict(claims_string):
+    claims_string = remove_tabs(claims_string)                                                     
+    claims_dict = {}
+
+    claims_list = re.findall(r'[0-9]{1,2}\..*',claims_string,re.M)
     
     print('\nFINDALL results:')
-    print(list)
+    print(claims_list)
     print('\n\n')
-    
-    
-    list2 = re.split(r'([0-9]{1,2}\.)',claims_string)
-    
-    #print(list)
-    #print(len(list))
-    
-    #print(list2)
-    
-    list3 = add_original_identifier(list2)
-    #print(list3)
-    
-    for i in list:
+
+
+    for i in claims_list:
         claimNo = re.search(r'[0-9]{1,2}',i).group(0)
         print('CLAIM ' + claimNo)
         #print(type(claimNo))
         #matchObj = re.search(r'claim [0-9]{1,2}',i,re.I)
         
-        claims[claimNo] = []
+        claims_dict[claimNo] = []
     
         #regex to find dependent claims
         depClaimRegex = r'(claim) (\d+)'
@@ -116,25 +105,26 @@ def main():
             parClaimNo = parClaimStr.lower().replace('claim ','')
             print('parent: ' + parClaimNo)
                     
-            if parClaimNo in claims:
-                claims[parClaimNo].append(claimNo)
+            if parClaimNo in claims_dict:
+                claims_dict[parClaimNo].append(claimNo)
                 print('added dependent claim {} to parent claim {}'.format(claimNo, parClaimNo))
             #depClaimNo = depClaimStr.replace()
             #print(matchObj.group(0))
-                print(claims)
+                print(claims_dict)
             
         else:
             print('no match')
         
         
         #claims.update()
-        
     
-    print(claims)
-    
+    return claims_dict
+
+def generate_claim_chart(claims_dict, filepath="./"):
     graph = pydot.Dot(graph_type='graph')
-    
-    for i in claims:
+    location = file_reader.get_folder(filepath)
+
+    for i in claims_dict:
         #print(i)
         # we can get right into action by "drawing" edges between the nodes in our graph
         # we do not need to CREATE nodes, but if you want to give them some custom style
@@ -143,26 +133,46 @@ def main():
         # node, they are just strings like you can see
         node = pydot.Node(i)
         graph.add_node(node)
-        for j in claims[i]:
+        for j in claims_dict[i]:
             edge = pydot.Edge(i, j)
             graph.add_edge(edge)
         
         # and we obviosuly need to add the edge to our graph
     
-    currentTime = str(datetime.datetime.now()).split('.')[0].replace('-','').replace(' ','').replace(':','')
+    #currentTime = str(datetime.datetime.now()).split('.')[0].replace('-','').replace(' ','').replace(':','')
     
     #filepath = '{}_{}.png'.format(filepath.replace('.txt',''),currentTime)    
-    output_path = location + "claim_chart.png"
+    #output_path = location + "claim_chart.png"
+    output_path = location + "static/output/claim_chart.png"
     graph.write_png(output_path)
     print("flowchart generated at {}...".format(output_path))
-    
-    #print(filereadtest.getStringFromTxt())
-    
-    #test2 ="ABC"
-    #print(re.match(r'A',test2).group())
-    
-    #test.split
-    
-    #print("test")
 
-main()
+def main():
+    filepath=""
+    #filepath = '8836S-1189 claims.txt'
+    #filepath = "cases/8054L-1152/8054L-1152 claims.txt"
+    
+    #Temp
+    #filepath = "input/8836S_1317_claims.txt"
+    
+    filepath = file_reader.get_filepath()
+        
+    #get claims as a string
+    claims_string = get_claims_string(filepath)
+           
+    list2 = re.split(r'([0-9]{1,2}\.)',claims_string)
+    
+    #print(list)
+    #print(len(list))
+    
+    #print(list2)
+    
+    list3 = add_original_identifier(list2)
+    #print(list3)
+
+    claims_dict = create_claims_dict(claims_string)
+    print(claims_dict)
+    
+    generate_claim_chart(claims_dict, filepath)
+
+#main()
