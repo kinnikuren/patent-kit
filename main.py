@@ -46,12 +46,15 @@ def upload_file(snippet=None):
             return redirect(request.url)
             #return redirect(url_for('upload'))
         if file and allowed_file(file.filename):
+            print("FILE TYPE IS:")
+            print(type(file))
             filename = secure_filename(file.filename)
             #pass the file here to a function?
             
-            file_save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(file_save_path)
-            snippet = do_something_with_file(file_save_path)
+            snippet = do_something_with_file(file)
+
+            #file_save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            #file.save(file_save_path)
 
             test_image_path = "./static/output/claim_chart.png"
             test_image = Image.open(test_image_path) 
@@ -68,11 +71,24 @@ def uploaded_file(filename):
                                filename)
 
 def do_something_with_file(file_save_path):
-    print(os.path.abspath(file_save_path))
+    #print(os.path.abspath(file_save_path))
+    """
     with open(file_save_path) as file_reader:
         file_string = file_reader.read()
+    """
+    file_bytes = file_save_path.stream.read()
+    print(type(file_bytes))
+    print(file_bytes)
+    file_string = file_bytes.decode("UTF-8")
+    print(type(file_string))
+    #print(type(file_string))
     
-    first_100 = file_string[:100]
+    #file_object = None
+    #file_save_path.save(file_object)
+    #print(type(file_object))
+    
+    
+    #first_100 = file_string[:100]
 
     claims_dict = ccg.create_claims_dict(file_string)
     ccg.generate_claim_chart(claims_dict)
