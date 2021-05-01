@@ -8,6 +8,9 @@ Created on Tue Oct 16 19:57:56 2018
 import os
 import re
 import pydot
+import io
+import base64
+
 import datetime
 import docx
 from docx.shared import Pt 
@@ -74,6 +77,9 @@ def generate_claim_chart(claims_dict, filepath="./"):
     graph = pydot.Dot(graph_type='graph')
     location = os.path.dirname(filepath)
 
+    if claims_dict == {}:
+        return None
+
     for i in claims_dict:
         #print(i)
         # we can get right into action by "drawing" edges between the nodes in our graph
@@ -95,4 +101,17 @@ def generate_claim_chart(claims_dict, filepath="./"):
     #output_path = location + "claim_chart.png"
     output_path = location + "/static/output/claim_chart.png"
     graph.write_png(output_path)
+
+    claim_chart_png = graph.create_png()
+    #print(claim_chart_png)
+    print(type(claim_chart_png)) 
+    print(claim_chart_png)
+
+    data = io.BytesIO(claim_chart_png)
+
+    encoded_img_data = base64.b64encode(data.getvalue())
+    #print(encoded_img_data)
+
     print("flowchart generated at {}...".format(output_path))
+
+    return encoded_img_data
