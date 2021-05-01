@@ -16,7 +16,9 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+#app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+app.secret_key = os.environ.get('SECRET_KEY')
+#app.secret_key = os.environ.get('SECRET_KEY', b'_5#y2L"F4Q8z\n\xec]/')
 
 #for static files
 #url_for('static', filename='style.css')
